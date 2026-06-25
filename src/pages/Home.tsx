@@ -1,6 +1,6 @@
 import React from 'react';
-import Button from '../components/Button';
-import { useAppContext } from '../contexts/AppContext';
+import Button from '../components/Button.tsx';
+import { useAppContext } from '../hooks/useAppContext.tsx';
 
 const Home: React.FC = () => {
   const { count, increment } = useAppContext();

@@ -1,28 +1,13 @@
-import React, { createContext, useContext, useState } from 'react';
+import { createContext } from 'react';
 
-interface AppContextType {
+export interface CountReader {
   count: number;
+}
+
+export interface CountWriter {
   increment: () => void;
 }
 
-const AppContext = createContext<AppContextType | undefined>(undefined);
+export type AppContextType = CountReader & CountWriter;
 
-export const AppProvider: React.FC = ({ children }) => {
-  const [count, setCount] = useState(0);
-
-  const increment = () => setCount(count + 1);
-
-  return (
-    <AppContext.Provider value={{ count, increment }}>
-      {children}
-    </AppContext.Provider>
-  );
-};
-
-export const useAppContext = (): AppContextType => {
-  const context = useContext(AppContext);
-  if (!context) {
-    throw new Error('useAppContext must be used within an AppProvider');
-  }
-  return context;
-};
+export const AppContext = createContext<AppContextType | undefined>(undefined);
